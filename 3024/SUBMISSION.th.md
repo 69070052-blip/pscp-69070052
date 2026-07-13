@@ -15,13 +15,13 @@
 หมายเลข/ชื่อโจทย์ OJ:
 
 ```text
-OJ3107 - Bill
+3024 - SurprisingVote
 ```
 
 OJ submission ID ถ้ามีการส่งแล้ว:
 
 ```text
-541670
+549084
 ```
 
 สถานะ OJ:
@@ -33,7 +33,7 @@ Pass
 เวลาที่ใช้คิดและทำโจทย์ด้วยตนเอง:
 
 ```text
-15-30 minutes
+1-3 hours
 ```
 
 เลือกหนึ่งข้อ:
@@ -74,11 +74,12 @@ More than 4 weeks
 
 ```text
 input:
-รับจำนวนเต็มของค่า money
+ผลโหวตรวม
+คะแนนโหวตสูงสุด
 output:
-ค่าที่คิดรวมราคา vat และ service
-Constraints:
-ควรพิจารณาการใส่ทศนิยมสองตำแหน่งให้ถูก
+ม๊โอกาส / หรือไม่มีโอกาส
+constraints:
+0-10 เป็นจำนวณจริง ไม่มีติดลบ
 ```
 
 ---
@@ -98,12 +99,10 @@ Constraints:
 สามารถเขียนเป็น pseudocode, flowchart idea หรือขั้นตอนความคิดได้
 
 ```text
-Step 1:รับค่าเป็นจำนวนเต็มใส่ money
-Step 2:คิดservice โดยนำmoney *(10/100)
-Step 3:ถ้าserviceเกิน1000 ให้คิดเป็น1000 ถ้าserviceน้อยกว่า50 ให้คิดเป็น50
-Step 4:คิดvatโดย (money+service)*7/100
-Step 5:คิดbillออกมาโดยนำ money+service+vat
-Step 6:สั่งปริ้นbillใส่ทสนิยม
+Step 1:รับค่า input
+Step 2:หาค่าเฉลี่ย
+Step 3:ถ้าคะแนนสูงสุดลบด้วยค่าเฉลี่ยมากกว่า2ให้พิมพ์ Surprising
+Step 4: ถ้าไม่ให้พิมพ์ Not surprising
 ```
 
 ---
@@ -123,12 +122,13 @@ Step 6:สั่งปริ้นbillใส่ทสนิยม
 ห้ามคัดลอกคำอธิบายจากคนอื่น
 
 ```text
-Step 1:รับค่าเป็นจำนวนเต็มใส่ money
-Step 2:คิดservice โดยนำmoney *(10/100)
-Step 3:ถ้าserviceเกิน1000 ให้คิดเป็น1000 ถ้าserviceน้อยกว่า50 ให้คิดเป็น50
-Step 4:คิดvatโดย (money+service)*7/100
-Step 5:คิดbillออกมาโดยนำ money+service+vat
-Step 6:สั่งปริ้นbillใส่ทสนิยม(2ตำแหน่ง)
+Step 1:รับค่า input
+Step 2:หาค่าเฉลี่ย
+Step 3:ถ้าค่าเฉลี่ยมากกว่าคะแนนสูงสุดให้จับเท่ากัน
+Step 4:หาค่าที่น้อยที่สุดที่เป็นไปได้
+Step 5:ถ้าค่าน้อยที่สุดน้อยกว่า0ให้จับเท่ากับ0
+Step 6:ถ้าค่าที่มากสุดลบน้อยสุดมากกว่า 2 ให้พิมพ์ Surprising
+Step 7:ถ้าอื่นๆให้พิมพ์ Not surprising
 ```
 
 ---
@@ -148,31 +148,32 @@ Step 6:สั่งปริ้นbillใส่ทสนิยม(2ตำแห�
 ทำไมเลือก case นี้:
 
 ```text
-เช็คการทำงานของโค้ดว่าถูกต้องหรือไม่
+เช้คกรณีที่เป็น-1ให้จับเท่ากับ0
 ```
 
 Input:
 
 ```text
-200
+0
+-1
 ```
 
 Expected output:
 
 ```text
-267.50
+Not surprising
 ```
 
 Actual output:
 
 ```text
-267.5
+Not surprising
 ```
 
 Result:
 
 ```text
-Not Pass
+Pass
 ```
 
 ### Test Case 2
@@ -180,25 +181,26 @@ Not Pass
 ทำไมเลือก case นี้:
 
 ```text
-เช็คการทำงานของโค้ดในกรณีอื่นว่าถูกต้องตรงกับoutputหรือไม่
+เช็คกรณีที่ค่าเฉลี่ยมากกว่าค่าสูงสุด
 ```
 
 Input:
 
 ```text
-1999
+10
+2
 ```
 
 Expected output:
 
 ```text
-2352.82
+Not surprising
 ```
 
 Actual output:
 
 ```text
-2352.82
+Not surprising
 ```
 
 Result:
@@ -212,25 +214,26 @@ Pass
 ทำไมเลือก case นี้:
 
 ```text
-เช็คการรับค่าในกรณีที่serviceเกิน1000ว่าทำงานตรงกับoutputหรือไม่
+เช็คการทำงานของค่าปกติ
 ```
 
 Input:
 
 ```text
-88888
+21
+10
 ```
 
 Expected output:
 
 ```text
-96180.16
+Surprising
 ```
 
 Actual output:
 
 ```text
-96180.16
+Surprising
 ```
 
 Result:
@@ -289,20 +292,19 @@ Yes
 ใครช่วยคุณ
 
 ```text
-พี่ Ta
+เพื่อน
 ```
 
 เขาช่วยอะไร
 
 ```text
-ช่วยdebugging ในส่วนของทศนิยม
+ช่วยเช็คlogic
 ```
 
 คุณยังทำอะไรด้วยตนเอง
 
 ```text
-แก้ไขโค้ดจากprint(f"{bill:.2}") > print(f"{bill:.2f}")
-จากนั้นtestcaseอีกรอบว่าoutputไม่ผิดพลาดจากนั้นทำการส่งOJด้วยตัวเอง
+แก้logicด้วยตัวเอง แก้โค้ดด้วยตนเอง ทดสอบและส่งOJด้วยตัวเอง
 ```
 
 คุณคัดลอก code จากคนอื่นหรือไม่
